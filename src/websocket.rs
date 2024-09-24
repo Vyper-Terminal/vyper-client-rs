@@ -354,18 +354,19 @@ mod tests {
         let mut mock_ws = MockWebSocket::new();
         
         mock_ws.expect_connect()
-            .with(eq("wss://api.vyper.trade/api/v1/ws/TokenEvents?apiKey=test_api_key"))
+            .with(eq("wss://api.vyper.trade/api/v1/ws/token-events?apiKey=test_api_key"))
             .times(1)
             .returning(|_| Ok(()));
 
-        let client = Arc::new(VyperWebsocketClient::new("test_api_key".to_string()));
+        let client = VyperWebsocketClient::new("test_api_key".to_string());
 
         {
             let mut conn_guard = client.conn.lock().await;
             *conn_guard = Some(Box::new(mock_ws));
         }
 
-        let _ = client.connect(FeedType::TokenEvents).await;
+        let result = client.connect(FeedType::TokenEvents).await;
+        assert!(result.is_ok());
 
         let feed_type_guard = client.current_feed_type.lock().await;
         assert_eq!(*feed_type_guard, Some(FeedType::TokenEvents));

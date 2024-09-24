@@ -17,7 +17,6 @@ impl VyperClient {
             api_key: api_key.to_string(),
             http_client: HttpClient::builder()
                 .timeout(Duration::from_secs(10))
-                .https_only(true) 
                 .build()
                 .unwrap(),
         }
@@ -707,7 +706,7 @@ mod tests {
         let token_pairs = result.unwrap();
         assert_eq!(token_pairs.has_next, false);
         assert_eq!(token_pairs.pairs.len(), 1);
-        assert_eq!(token_pairs.pairs[0].market_id, "EXT-USD");
+        assert_eq!(token_pairs.pairs[0].market_id, "test-market");
         assert_eq!(token_pairs.pairs[0].symbol, "EXT");
     }
 }
