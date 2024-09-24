@@ -1,0 +1,38 @@
+# Rust build directory
+/target/
+
+# Rust package manager (Cargo) lock file
+# Uncomment this line if you want to ignore the Cargo.lock file
+# Cargo.lock
+
+# Generated documentation
+/doc/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+
+# Log files
+*.log
+
+# Environment variables file
+.env
+
+# Any compiled files
+*.o
+*.so
+*.dylib
+
+# Backup files
+*~
+
+# Rust profiling files
+*.profraw
