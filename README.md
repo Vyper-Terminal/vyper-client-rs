@@ -25,10 +25,6 @@ vyper-client_rs = "0.1.0" # Replace with the actual version
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-reqwest = { version = "0.11", features = ["json"] }
-async-trait = "0.1"
-tokio-tungstenite = "0.16"
-futures-util = "0.3"
 ```
 
 ## Quick Start
@@ -36,7 +32,7 @@ futures-util = "0.3"
 Here's a simple example to get you started:
 
 ```rust
-use vyper_client_rs::VyperClient;
+use vyper_client_rs::client::VyperClient;
 use tokio;
 
 #[tokio::main]
@@ -59,7 +55,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 Retrieve the market data for a specific token:
 
 ```rust
-use vyper_client_rs::VyperClient;
+use vyper_client_rs::client::VyperClient;
 use tokio;
 
 #[tokio::main]
@@ -81,9 +77,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ### WebSocket API Example
 
 ```rust
-use vyper_client_rs::{VyperWebsocketClient, FeedType, SubscriptionType, TokenSubscriptionMessage, SubscriptionMessageType};
-use tokio;
+use vyper_client_rs::websocket::{VyperWebsocketClient, FeedType, SubscriptionType, TokenSubscriptionMessage, SubscriptionMessageType};
 use serde_json::Value;
+use tokio;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
