@@ -53,7 +53,7 @@ async fn test_vyper_websocket_client_integration() {
     client.subscribe(FeedType::TokenEvents, subscription_message).await.expect("Failed to subscribe");
 
     let listen_future = client.listen();
-    tokio::time::timeout(std::time::Duration::from_secs(60), listen_future).await.expect("Timeout waiting for message").expect("Error while listening");
+    tokio::time::timeout(std::time::Duration::from_secs(120), listen_future).await.expect("Timeout waiting for message").expect("Error while listening");
 
     let received = received_message.lock().await;
     assert!(*received, "No message was received");
